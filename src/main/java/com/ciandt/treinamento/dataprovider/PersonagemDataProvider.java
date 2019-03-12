@@ -20,6 +20,11 @@ public class PersonagemDataProvider {
 	public PersonagemDataProvider(PersonagemRepository personagemRepository) {
 		this.personagemRepository = personagemRepository;
 	}
+	
+	public void saveListaRestrita(List<Personagem> lista) {
+		List<PersonagemEntity> listaConvertida = convertPersonagemtoEntityList(lista);
+		personagemRepository.saveAll(listaConvertida);
+	}
 
 	public void savePersonagem(List<Personagem> list) {
 
