@@ -1,8 +1,8 @@
 package com.ciandt.treinamento.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +30,7 @@ public class PersonagemEntity implements Serializable {
 
 	private String nome;
 
+	@Column(length = 500)
 	private String descricao;
 
 	private String imagem;

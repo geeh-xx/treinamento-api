@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ciandt.treinamento.controller.entity.Personagem;
-import com.ciandt.treinamento.service.CharacterService;
 import com.ciandt.treinamento.service.impl.CharacterServiceImpl;
 
 @RestController
@@ -25,7 +24,6 @@ public class CharactersController {
 
 	@GetMapping("/characters/")
 	public ResponseEntity<Object> returnAllCharacters(@PathVariable Long id) {
-		CharacterService characters = new CharacterServiceImpl();
 //		return (ResponseEntity<Object>) characters.characterList(id);
 		return null;
 
