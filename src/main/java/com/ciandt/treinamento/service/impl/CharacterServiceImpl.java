@@ -1,14 +1,14 @@
 package com.ciandt.treinamento.service.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ciandt.treinamento.constants.MarvelApiConstants;
 import com.ciandt.treinamento.controller.entity.Personagem;
+import com.ciandt.treinamento.dataprovider.PersonagemDataProvider;
 import com.ciandt.treinamento.dto.ResponseCharacterJson;
 import com.ciandt.treinamento.service.CharacterService;
 import com.ciandt.treinamento.util.ApiUtils;
@@ -17,7 +17,12 @@ import com.ciandt.treinamento.util.ApiUtils;
 public class CharacterServiceImpl implements CharacterService {
 
 
+	private PersonagemDataProvider personagemDataProvider;
 
+	@Autowired
+	public CharacterServiceImpl(PersonagemDataProvider personagemDataProvider) {
+		this.personagemDataProvider = personagemDataProvider;
+	}
 
 	public List<Personagem> returnAllCharacters(Integer limit) {
 		 List<Personagem> personagens = findAll();
@@ -36,19 +41,19 @@ public class CharacterServiceImpl implements CharacterService {
 
 		String url = ApiUtils.buildUrl(MarvelApiConstants.PATH_CHARACTERS + "/" + id, MarvelApiConstants.PRIVATE_KEY,
 				MarvelApiConstants.API_KEY_VALUE);
-		Personagem person = (Personagem) ApiUtils.getObject(url, Personagem.class);
+				ResponseCharacterJson personagens = (ResponseCharacterJson) ApiUtils.getObject(url,
+					ResponseCharacterJson.class);
+				Personagem person = personagens.getData().getResults().get(0);
+				
 		return person;
 	}
 
 	@Override
 	public List<Personagem> searchByName(String nome) {
 
-		List<Personagem> listaPersonagens = new ArrayList<Personagem>();
+		findAll();
 
-		findAll().stream().filter(p -> p.getNome().startsWith(nome)).forEach(p -> listaPersonagens.add(p));
-
-		return listaPersonagens;
-
+		return personagemDataProvider.findByNameStartsWith(nome);
 	}
 
 	public List<Personagem> findAll() {
@@ -61,6 +66,9 @@ public class CharacterServiceImpl implements CharacterService {
 		personagens.getData().getResults().forEach(p -> {
 			listaPersonagem.add(p);
 		});
+
+		personagemDataProvider.savePersonagem(listaPersonagem);
+
 		return listaPersonagem;
 	}
 
