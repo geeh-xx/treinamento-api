@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.ciandt.treinamento.controller.entity.Personagem;
 
+
 public interface CharacterService {
 
-	Personagem searchAll();
+	List<Personagem> returnAllCharacters(Integer limit);
+
+	Personagem searchByName(String nome);
 	
 	Personagem searchById(Long id);
-	
-	List<Personagem> searchByName(String name);
-	
 }

@@ -1,7 +1,5 @@
 package com.ciandt.treinamento.controller;
 
-import com.ciandt.treinamento.service.impl.CharacterServiceImpl;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ciandt.treinamento.controller.entity.Personagem;
 import com.ciandt.treinamento.service.CharacterService;
+import com.ciandt.treinamento.service.impl.CharacterServiceImpl;
 
 @RestController
 @RequestMapping("api/v1")
 public class CharactersController {
+
 	
 	private CharacterServiceImpl service;
 	
@@ -40,5 +40,13 @@ public class CharactersController {
 	}
 	
 	
+
+	@GetMapping("/characters/{name}")
+	public ResponseEntity<Object> returnCharactersByName(@PathVariable String name) {
+//		return (ResponseEntity<Object>) characters.characterList(quantidade);
+		return null;
+
+	}
+
 }
 	

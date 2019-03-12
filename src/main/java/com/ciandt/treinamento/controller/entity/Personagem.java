@@ -17,6 +17,18 @@ public class Personagem {
 	
 
 	@JsonProperty("name")
-	private String name;
+	private String nome;
+
+	@JsonProperty("id")
+	private Long identificador;
+
+	@JsonProperty("description")
+	private String descricao;
+
+	@JsonProperty("thumbnail")
+	private Thumbnail imagem;
+
+	// @JsonProperty("comics")
+	// private List<Revista> revistas;
 
 }
