@@ -1,6 +1,7 @@
 package com.ciandt.treinamento.controller;
 
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,15 +14,13 @@ import com.ciandt.treinamento.util.ApiUtils;
 @RequestMapping("api/v1")
 public class UserController {
 
-	
-	@GetMapping(path = "/marvel", produces = MediaType.APPLICATION_JSON_VALUE)
-	public String getString() {
-		String url = ApiUtils.buildUrl(MarvelApiConstants.PATH_CHARACTERS, 
-				MarvelApiConstants.PRIVATE_KEY, 
+	@GetMapping(path = "/marvel", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Object> getString() {
+		String url = ApiUtils.buildUrl(MarvelApiConstants.PATH_CHARACTERS, MarvelApiConstants.PRIVATE_KEY,
 				MarvelApiConstants.API_KEY_VALUE);
 
 		Object person = ApiUtils.getObject(url, ResponseCharacterJson.class);
-		return person.toString();
+		return ResponseEntity.ok(person);
 	}
 
 }
