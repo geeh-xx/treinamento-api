@@ -59,6 +59,6 @@ public class ApiUtils {
 
 	private static void loadValues() {
 		timeStamp = new Date().getTime();
-		hash = ApiUtils.generateHash(timeStamp + MarvelApiConstants.API_KEY_VALUE + MarvelApiConstants.PRIVATE_KEY);
+		hash = ApiUtils.generateHash(timeStamp  + MarvelApiConstants.PRIVATE_KEY + MarvelApiConstants.API_KEY_VALUE);
 	}
 }
