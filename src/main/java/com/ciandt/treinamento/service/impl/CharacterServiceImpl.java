@@ -1,7 +1,9 @@
 package com.ciandt.treinamento.service.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.springframework.stereotype.Component;
 
@@ -17,8 +19,16 @@ public class CharacterServiceImpl implements CharacterService {
 
 
 
-	public  List<Personagem> returnAllCharacters(Integer limit) {
-		return findAll();
+	public List<Personagem> returnAllCharacters(Integer limit) {
+		 List<Personagem> personagens = findAll();
+		 List<Personagem> listaRestrita = new ArrayList<>();
+
+		for (int i = 0; i < personagens.size(); i++) {
+			if(i <= limit) {
+				listaRestrita.add(personagens.get(i));
+			}
+		} 
+		return listaRestrita;
 	}
 
 	@Override

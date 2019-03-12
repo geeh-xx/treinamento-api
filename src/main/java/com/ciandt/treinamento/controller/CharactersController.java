@@ -2,9 +2,6 @@ package com.ciandt.treinamento.controller;
 
 import java.util.List;
 
-import javax.xml.stream.events.Characters;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
@@ -16,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ciandt.treinamento.service.impl.CharacterServiceImpl;
-import com.ciandt.treinamento.constants.MarvelApiConstants;
 import com.ciandt.treinamento.controller.entity.Personagem;
-import com.ciandt.treinamento.service.CharacterService;
 
 
 @RestController
