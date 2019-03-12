@@ -1,5 +1,7 @@
 package com.ciandt.treinamento.controller;
 
+import java.util.List;
+
 import javax.xml.stream.events.Characters;
 
 
@@ -14,12 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ciandt.treinamento.service.impl.CharacterServiceImpl;
-
-
-
+import com.ciandt.treinamento.constants.MarvelApiConstants;
 import com.ciandt.treinamento.controller.entity.Personagem;
 import com.ciandt.treinamento.service.CharacterService;
-import com.ciandt.treinamento.service.impl.CharacterServiceImpl;
 
 
 @RestController
@@ -34,13 +33,13 @@ public class CharactersController {
 	}
 
 	@GetMapping("/characters/")
-	public ResponseEntity<Object> returnAllCharacters(
+	public List<Personagem> returnAllCharacters(
 			@RequestParam(name = "quantidade", required = false) Integer quantidade) {
-//		if (quantidade < 20)
-//			return (ResponseEntity<Object>) CharacterServiceImpl.returnAllCharacters(quantidade);
-//		else
-//			return (ResponseEntity<Object>) CharacterServiceImpl.returnAllCharacters(20);
-		return null;
+		if (quantidade < 20)
+			return  service.returnAllCharacters(quantidade);
+		else
+			return  service.returnAllCharacters(20);
+		
 	}
 
 	@GetMapping(path = "/characters/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

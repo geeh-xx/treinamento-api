@@ -17,7 +17,7 @@ public class CharacterServiceImpl implements CharacterService {
 
 
 
-	public List<Personagem> returnAllCharacters(Integer limit) {
+	public  List<Personagem> returnAllCharacters(Integer limit) {
 		return findAll();
 	}
 
