@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Personagem {
+	
 
 	@JsonProperty("name")
 	private String nome;

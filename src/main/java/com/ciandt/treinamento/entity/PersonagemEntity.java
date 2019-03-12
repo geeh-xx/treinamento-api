@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -35,7 +34,6 @@ public class PersonagemEntity implements Serializable {
 
 	private String imagem;
 
-	@ManyToMany(mappedBy = "personagens")
-	private List<RevistaEntity> revistas;
+//	private List<RevistaEntity> revistas;
 
 }
