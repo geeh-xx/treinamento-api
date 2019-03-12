@@ -9,21 +9,23 @@ import org.springframework.web.client.RestTemplate;
 import com.ciandt.treinamento.constants.MarvelApiConstants;
 
 public class ApiUtils {
-	
+
 	private static final String EQUAL = "=";
 	private static Long timeStamp;
 	private static String hash;
 	private static String basePath;
 
-	private ApiUtils() {}
-	
+	private ApiUtils() {
+	}
+
 	public static Object getObject(String url, Class<?> classJson) {
 		RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(url, classJson);
+		return restTemplate.getForObject(url, classJson);
 	}
-	
+
 	/**
 	 * Converte a string para um hash e retorna a string gerada a partir do hash.
+	 * 
 	 * @param parametro a ser utilizado.
 	 * @return string gerada a partir do parametro.
 	 */
@@ -48,16 +50,13 @@ public class ApiUtils {
 		}
 		return s.toString();
 	}
-	
+
 	public static String buildUrl(String urlPath, String privateKey, String apiKey) {
 		loadValues(urlPath, privateKey, apiKey);
-		return MarvelApiConstants.URL + 
-				basePath +  "?" +
-				MarvelApiConstants.API_KEY + EQUAL + apiKey +
-				"&" + MarvelApiConstants.TS +  EQUAL + timeStamp +
-				"&" + MarvelApiConstants.HASH +  EQUAL + hash;
+		return MarvelApiConstants.URL + basePath + "?" + MarvelApiConstants.API_KEY + EQUAL + apiKey + "&"
+				+ MarvelApiConstants.TS + EQUAL + timeStamp + "&" + MarvelApiConstants.HASH + EQUAL + hash;
 	}
-	
+
 	private static void loadValues(String urlPath, String privateKey, String apiKey) {
 		timeStamp = new Date().getTime();
 		hash = ApiUtils.generateHash(timeStamp + privateKey + apiKey);
