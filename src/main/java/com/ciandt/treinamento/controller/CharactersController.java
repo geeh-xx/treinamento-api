@@ -16,37 +16,31 @@ import com.ciandt.treinamento.service.impl.CharacterServiceImpl;
 @RequestMapping("api/v1")
 public class CharactersController {
 
-	
 	private CharacterServiceImpl service;
-	
+
 	@Autowired
 	public CharactersController(CharacterServiceImpl service) {
 		this.service = service;
 	}
-	
+
 	@GetMapping("/characters/")
 	public ResponseEntity<Object> returnAllCharacters(@PathVariable Long id) {
 		CharacterService characters = new CharacterServiceImpl();
 //		return (ResponseEntity<Object>) characters.characterList(id);
 		return null;
-	
+
 	}
-	
-	
+
 	@GetMapping(path = "/characters/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Personagem> getOneCharacterById(@PathVariable("id") Long id) {
 		Personagem personagem = service.searchById(id);
 		return ResponseEntity.ok(personagem);
 	}
-	
-	
 
 	@GetMapping("/characters/{name}")
 	public ResponseEntity<Object> returnCharactersByName(@PathVariable String name) {
-//		return (ResponseEntity<Object>) characters.characterList(quantidade);
-		return null;
 
+		return ResponseEntity.ok(service.searchByName(name));
 	}
 
 }
-	
