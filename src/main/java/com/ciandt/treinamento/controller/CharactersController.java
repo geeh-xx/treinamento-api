@@ -1,7 +1,6 @@
 package com.ciandt.treinamento.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,15 +26,11 @@ public class CharactersController {
 			@RequestParam(name = "quantidade", required = false) Long quantidade) {
 //		return (ResponseEntity<Object>) characters.characterList(quantidade);
 		return null;
-
 	}
 
 	@GetMapping("/characters/{name}")
 	public ResponseEntity<Object> returnCharactersByName(@PathVariable String name) {
 
-		if (name.length() < 3) {
-			return new ResponseEntity<Object>("São necessários no mínimo 3 caracteres", HttpStatus.BAD_REQUEST);
-		}
 		return ResponseEntity.ok(service.searchByName(name));
 	}
 

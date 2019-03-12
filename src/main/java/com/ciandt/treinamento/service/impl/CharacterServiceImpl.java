@@ -30,7 +30,7 @@ public class CharacterServiceImpl implements CharacterService {
 
 		List<Personagem> listaPersonagens = new ArrayList<Personagem>();
 
-		findAll().stream().filter(p -> p.getNome().contains(nome)).map(p -> listaPersonagens.add(p));
+		findAll().stream().filter(p -> p.getNome().startsWith(nome)).forEach(p -> listaPersonagens.add(p));
 
 		return listaPersonagens;
 
@@ -42,7 +42,9 @@ public class CharacterServiceImpl implements CharacterService {
 		ResponseCharacterJson personagens = (ResponseCharacterJson) ApiUtils.getObject(url,
 				ResponseCharacterJson.class);
 		List<Personagem> listaPersonagem = new ArrayList<>();
-		personagens.getData().getResults().stream().map(p -> listaPersonagem.add(p));
+		personagens.getData().getResults().forEach(p -> {
+			listaPersonagem.add(p);
+		});
 		return listaPersonagem;
 	}
 }
