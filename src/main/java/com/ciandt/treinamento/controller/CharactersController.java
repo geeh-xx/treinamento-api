@@ -3,6 +3,7 @@ package com.ciandt.treinamento.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,20 +25,20 @@ public class CharactersController {
 		this.service = service;
 	}
 	
-	@GetMapping("/characters/")
-	public ResponseEntity<Object> returnAllCharacters(@PathVariable Long id) {
-		CharacterService characters = new CharacterServiceImpl();
-//		return (ResponseEntity<Object>) characters.characterList(id);
-		return null;
+//	@GetMapping("/characters/")
+//	public ResponseEntity<Object> returnAllCharacters(@PathVariable Long id) {
+//		CharacterService characters = new CharacterServiceImpl();
+////		return (ResponseEntity<Object>) characters.characterList(id);
+//		return null;
+//TODO 	
+//	}
 	
-	}
 	
-	
-	@GetMapping(path = "/characters/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Personagem> getOneCharacterById(@PathVariable("id") Long id) {
-		Personagem personagem = service.searchById(id);
-		return ResponseEntity.ok(personagem);
-	}
+//	@GetMapping(path = "/characters/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<Personagem> getOneCharacterById(@PathVariable("id") Long id) {
+//		Personagem personagem = service.searchById(id);
+//		return ResponseEntity.ok(personagem);
+//	}
 	
 	
 
@@ -48,5 +49,10 @@ public class CharactersController {
 
 	}
 
+	@GetMapping(path = "/character/{id}")
+	public ResponseEntity<Personagem> getOneCharacterById(@PathVariable Long id) {
+		Personagem personagem = service.searchById(id);
+		return ResponseEntity.ok(personagem);
+	}
 }
 	

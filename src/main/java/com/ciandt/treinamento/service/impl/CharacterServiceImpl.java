@@ -32,7 +32,11 @@ public class CharacterServiceImpl implements CharacterService {
 			String url = ApiUtils.buildUrl(MarvelApiConstants.PATH_CHARACTERS+"/"+id, 
 				MarvelApiConstants.PRIVATE_KEY, 
 				MarvelApiConstants.API_KEY_VALUE);
-				Personagem person = (Personagem) ApiUtils.getObject(url, Personagem.class);		
+				ResponseCharacterJson personagens = (ResponseCharacterJson) ApiUtils.getObject(url,
+					ResponseCharacterJson.class);
+				Personagem person = personagens.getData().getResults().get(0);
+				
+				
 		return person;
 	}
 
