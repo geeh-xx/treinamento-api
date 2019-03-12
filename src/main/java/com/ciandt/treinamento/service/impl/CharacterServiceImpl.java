@@ -3,6 +3,8 @@ package com.ciandt.treinamento.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.ciandt.treinamento.constants.MarvelApiConstants;
 import com.ciandt.treinamento.controller.entity.Personagem;
 import com.ciandt.treinamento.dto.ResponseCharacterJson;
@@ -12,7 +14,7 @@ import com.ciandt.treinamento.util.ApiUtils;
 
 public class CharacterServiceImpl implements CharacterService {
 
-	public List<Personagem> returnAllCharacters(Integer limit) {
+	public  List<Personagem> returnAllCharacters(Integer limit) {
 		String url = ApiUtils.buildUrl(MarvelApiConstants.PATH_CHARACTERS, MarvelApiConstants.PRIVATE_KEY,
 				MarvelApiConstants.API_KEY_VALUE);
 		ResponseCharacterJson personagens = (ResponseCharacterJson) ApiUtils.getObject(url,
