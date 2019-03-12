@@ -13,10 +13,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Personagem {
-	
+public class Thumbnail {
 
-	@JsonProperty("name")
-	private String name;
+	@JsonProperty("path")
+	private String path;
+
+	@JsonProperty("extension")
+	private String extension;
 
 }
