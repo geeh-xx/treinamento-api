@@ -3,6 +3,8 @@ package com.ciandt.treinamento.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.ciandt.treinamento.constants.MarvelApiConstants;
 import com.ciandt.treinamento.controller.entity.Personagem;
 import com.ciandt.treinamento.dto.ResponseCharacterJson;
@@ -10,6 +12,7 @@ import com.ciandt.treinamento.entity.PersonagemEntity;
 import com.ciandt.treinamento.service.CharacterService;
 import com.ciandt.treinamento.util.ApiUtils;
 
+@Component
 public class CharacterServiceImpl implements CharacterService {
 
 	public List<Personagem> returnAllCharacters(Integer limit) {
@@ -23,9 +26,14 @@ public class CharacterServiceImpl implements CharacterService {
 	}
 
 	@Override
-	public Personagem searchByName(String nome) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Personagem> searchByName(String nome) {
+
+		List<Personagem> listaPersonagens = new ArrayList<Personagem>();
+
+		findAll().stream().filter(p -> p.getNome().contains(nome)).map(p -> listaPersonagens.add(p));
+
+		return listaPersonagens;
+
 	}
 
 	public List<Personagem> findAll() {

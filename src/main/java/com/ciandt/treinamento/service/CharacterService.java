@@ -11,5 +11,5 @@ public interface CharacterService {
 
 	public PersonagemEntity search();
 
-	public Personagem searchByName(String nome);
+	public List<Personagem> searchByName(String nome);
 }
