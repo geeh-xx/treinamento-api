@@ -6,7 +6,7 @@ import com.ciandt.treinamento.controller.entity.Personagem;
 
 public interface CharacterService {
 
-	List<Personagem> returnAllCharacters(Integer limit);
+	List<Personagem> getCharacterList(Integer limit);
 
 	List<Personagem> searchByName(String nome);
 

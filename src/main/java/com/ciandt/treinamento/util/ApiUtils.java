@@ -13,7 +13,6 @@ public class ApiUtils {
 	private static final String EQUAL = "=";
 	private static Long timeStamp;
 	private static String hash;
-	private static String basePath;
 
 	private ApiUtils() {
 	}
@@ -51,15 +50,15 @@ public class ApiUtils {
 		return s.toString();
 	}
 
-	public static String buildUrl(String urlPath, String privateKey, String apiKey) {
-		loadValues(urlPath, privateKey, apiKey);
-		return MarvelApiConstants.URL + basePath + "?" + MarvelApiConstants.API_KEY + EQUAL + apiKey + "&"
-				+ MarvelApiConstants.TS + EQUAL + timeStamp + "&" + MarvelApiConstants.HASH + EQUAL + hash;
+	public static String buildUrl(String urlPath, Integer limit) {
+		loadValues();
+		return MarvelApiConstants.URL + urlPath + "?" + MarvelApiConstants.API_KEY + EQUAL + MarvelApiConstants.API_KEY_VALUE + "&"
+				+ MarvelApiConstants.TS + EQUAL + timeStamp + "&" + MarvelApiConstants.HASH + EQUAL + hash
+				+ "&" + MarvelApiConstants.LIMIT + EQUAL + limit;
 	}
 
-	private static void loadValues(String urlPath, String privateKey, String apiKey) {
+	private static void loadValues() {
 		timeStamp = new Date().getTime();
-		hash = ApiUtils.generateHash(timeStamp + privateKey + apiKey);
-		basePath = urlPath;
+		hash = ApiUtils.generateHash(timeStamp  + MarvelApiConstants.PRIVATE_KEY + MarvelApiConstants.API_KEY_VALUE);
 	}
 }

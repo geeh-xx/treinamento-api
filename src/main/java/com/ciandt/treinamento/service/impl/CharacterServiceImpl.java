@@ -24,23 +24,14 @@ public class CharacterServiceImpl implements CharacterService {
 		this.personagemDataProvider = personagemDataProvider;
 	}
 
-	public List<Personagem> returnAllCharacters(Integer limit) {
-		 List<Personagem> personagens = findAll();
-		 List<Personagem> listaRestrita = new ArrayList<>();
-
-		for (int i = 0; i < personagens.size(); i++) {
-			if(i <= limit) {
-				listaRestrita.add(personagens.get(i));
-			}
-		} 
-		return listaRestrita;
+	public List<Personagem> getCharacterList(Integer limit) {
+		 return findAll(limit);
 	}
 
 	@Override
 	public Personagem searchById(Long id) {
 
-		String url = ApiUtils.buildUrl(MarvelApiConstants.PATH_CHARACTERS + "/" + id, MarvelApiConstants.PRIVATE_KEY,
-				MarvelApiConstants.API_KEY_VALUE);
+		String url = ApiUtils.buildUrl(MarvelApiConstants.PATH_CHARACTERS, MarvelApiConstants.DEFAULT_LIMIT);
 				ResponseCharacterJson personagens = (ResponseCharacterJson) ApiUtils.getObject(url,
 					ResponseCharacterJson.class);
 				Personagem person = personagens.getData().getResults().get(0);
@@ -51,15 +42,21 @@ public class CharacterServiceImpl implements CharacterService {
 	@Override
 	public List<Personagem> searchByName(String nome) {
 
-		findAll();
+		findAll(null);
 
 		return personagemDataProvider.findByNameStartsWith(nome);
 	}
 
-	public List<Personagem> findAll() {
-
-		String url = ApiUtils.buildUrl(MarvelApiConstants.PATH_CHARACTERS, MarvelApiConstants.PRIVATE_KEY,
-				MarvelApiConstants.API_KEY_VALUE);
+	public List<Personagem> findAll(Integer limit) {
+		String url = "";
+		if (limit != null) {
+			url = ApiUtils.buildUrl(MarvelApiConstants.PATH_CHARACTERS, limit);
+		}
+		else
+		{
+			url = ApiUtils.buildUrl(MarvelApiConstants.PATH_CHARACTERS,MarvelApiConstants.DEFAULT_LIMIT );
+			
+		}
 		ResponseCharacterJson personagens = (ResponseCharacterJson) ApiUtils.getObject(url,
 				ResponseCharacterJson.class);
 		List<Personagem> listaPersonagem = new ArrayList<>();
