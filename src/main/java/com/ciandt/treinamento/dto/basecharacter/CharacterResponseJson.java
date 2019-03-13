@@ -1,4 +1,6 @@
-package com.ciandt.treinamento.dto;
+package com.ciandt.treinamento.dto.basecharacter;
+
+import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -8,14 +10,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseCharacterJson {
+@Data
+public class CharacterResponseJson implements Serializable {
 
+	private static final long serialVersionUID = 5681395932342062965L;
 	
 	private Long code;
 	private String status;
-	private ResponseDataJson data;
+	private CharacterDataJson data;
 }

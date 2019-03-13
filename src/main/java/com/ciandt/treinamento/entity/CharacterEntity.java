@@ -2,6 +2,7 @@ package com.ciandt.treinamento.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,21 +14,27 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table
+@Table(name="character")
 @Entity
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EnderecoEntity implements Serializable {
+public class CharacterEntity implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -7459517139531959528L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Long identificador;
+
+	private String nome;
+
+	@Column(length = 500)
+	private String descricao;
+
+	private String imagem;
+
+//	private List<RevistaEntity> revistas;
 
 }

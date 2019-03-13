@@ -4,20 +4,20 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.ciandt.treinamento.constants.MarvelApiConstants;
 
+@Component
 public class ApiUtils {
 
 	private static final String EQUAL = "=";
+	private static final Integer DEFAULT_SIZE = 20;
 	private static Long timeStamp;
 	private static String hash;
 
-	private ApiUtils() {
-	}
-
-	public static Object getObject(String url, Class<?> classJson) {
+	public Object getObject(String url, Class<?> classJson) {
 		RestTemplate restTemplate = new RestTemplate();
 		return restTemplate.getForObject(url, classJson);
 	}
@@ -28,7 +28,7 @@ public class ApiUtils {
 	 * @param parametro a ser utilizado.
 	 * @return string gerada a partir do parametro.
 	 */
-	public static String generateHash(String parametro) {
+	private String generateHash(String parametro) {
 		MessageDigest md = null;
 		try {
 			md = MessageDigest.getInstance("MD5");
@@ -50,15 +50,25 @@ public class ApiUtils {
 		return s.toString();
 	}
 
-	public static String buildUrl(String urlPath, Integer limit) {
+	public String buildUrl(String urlPath, Integer limit) {
 		loadValues();
+		
+		if (limit == null) {
+			limit = DEFAULT_SIZE;
+		}
+		
 		return MarvelApiConstants.URL + urlPath + "?" + MarvelApiConstants.API_KEY + EQUAL + MarvelApiConstants.API_KEY_VALUE + "&"
 				+ MarvelApiConstants.TS + EQUAL + timeStamp + "&" + MarvelApiConstants.HASH + EQUAL + hash
 				+ "&" + MarvelApiConstants.LIMIT + EQUAL + limit;
 	}
+	
+	//Aqui poderia ser um Map, mas deixei apenas assim para facilitar o entendimento.
+	public String appendParameterToUrl(String url, String parameter, String value) {
+		return url + "&" + parameter + EQUAL + value; 
+	}
 
-	private static void loadValues() {
+	private void loadValues() {
 		timeStamp = new Date().getTime();
-		hash = ApiUtils.generateHash(timeStamp  + MarvelApiConstants.PRIVATE_KEY + MarvelApiConstants.API_KEY_VALUE);
+		hash = generateHash(timeStamp  + MarvelApiConstants.PRIVATE_KEY + MarvelApiConstants.API_KEY_VALUE);
 	}
 }

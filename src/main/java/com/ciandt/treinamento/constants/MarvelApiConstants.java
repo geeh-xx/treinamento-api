@@ -17,7 +17,7 @@ public class MarvelApiConstants {
 	public static final String SEPARATOR = "/";
 	public static final String RESULTS = "results";
 	public static final String TS = "ts";
-	public static final String URL = "http://gateway.marvel.com/";
+	public static final String URL = "http://gateway.marvel.com/v1/public/";
 	public static final Integer DEFAULT_LIMIT = 20;
 
 	public static final String PRIVATE_KEY = "4f2fda538520f5a2525be48a149fe2caf166f796";

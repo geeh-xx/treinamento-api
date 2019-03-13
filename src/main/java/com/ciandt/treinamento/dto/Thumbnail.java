@@ -1,7 +1,8 @@
-package com.ciandt.treinamento.controller.entity;
+package com.ciandt.treinamento.dto;
+
+import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,12 +14,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Thumbnail {
+public class Thumbnail implements Serializable {
 
-	@JsonProperty("path")
+	private static final long serialVersionUID = -4972429819295605931L;
+	
 	private String path;
-
-	@JsonProperty("extension")
 	private String extension;
 
 }

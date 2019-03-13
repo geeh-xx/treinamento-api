@@ -13,13 +13,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table
+@Table(name="comic")
 @Entity
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RevistaEntity implements Serializable {
+public class ComicEntity implements Serializable {
 
 	private static final long serialVersionUID = 4963512624240716418L;
 
