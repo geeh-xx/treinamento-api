@@ -28,6 +28,10 @@ public class CharactersController {
 	@Autowired
 	private CharacterGateway gateway;
 	
+	/**
+	 * Exemplo de chamada -> http://localhost:8082/treinamento/api/v1/characters/
+	 * @return
+	 */
 	@GetMapping("/")
 	public List<CharacterMarvel> getAllCharacters(@RequestParam(name = "limit", required = false) Integer limit) {
 		String url = apiUtils.buildUrl(MarvelApiConstants.CHARACTERS, limit);

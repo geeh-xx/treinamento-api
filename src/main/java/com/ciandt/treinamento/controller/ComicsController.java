@@ -20,6 +20,11 @@ public class ComicsController {
 	@Autowired
 	private ApiUtils apiUtils;
 
+	/**
+	 * Exemplo de chamada -> http://localhost:8082/treinamento/api/v1/comics/
+	 * @param name
+	 * @return
+	 */
 	@GetMapping("/")
 	public List<Comic> getAllComics(@RequestParam(name = "limit", required = false) Integer limit) {
 		String url = apiUtils.buildUrl(MarvelApiConstants.COMICS, limit);
