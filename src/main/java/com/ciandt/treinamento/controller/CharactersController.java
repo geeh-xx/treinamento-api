@@ -19,7 +19,7 @@ import com.ciandt.treinamento.gateway.CharacterGateway;
 import com.ciandt.treinamento.util.ApiUtils;
 
 @RestController
-@RequestMapping("api/v1/character")
+@RequestMapping("api/v1/characters")
 public class CharactersController {
 	
 	@Autowired
