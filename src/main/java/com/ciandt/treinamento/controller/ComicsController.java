@@ -14,14 +14,14 @@ import com.ciandt.treinamento.dto.basecomic.ComicResponseJson;
 import com.ciandt.treinamento.util.ApiUtils;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/comics")
 public class ComicsController {
 
 	@Autowired
 	private ApiUtils apiUtils;
 
-	@GetMapping("/comics")
-	public List<Comic> getAllCharacters(@RequestParam(name = "limit", required = false) Integer limit) {
+	@GetMapping("/")
+	public List<Comic> getAllComics(@RequestParam(name = "limit", required = false) Integer limit) {
 		String url = apiUtils.buildUrl(MarvelApiConstants.COMICS, limit);
 		ComicResponseJson comics =  (ComicResponseJson) apiUtils.getObject(url, ComicResponseJson.class);
 		

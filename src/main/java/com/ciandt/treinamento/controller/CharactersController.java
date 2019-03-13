@@ -19,7 +19,7 @@ import com.ciandt.treinamento.gateway.CharacterGateway;
 import com.ciandt.treinamento.util.ApiUtils;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/character")
 public class CharactersController {
 	
 	@Autowired
@@ -28,7 +28,7 @@ public class CharactersController {
 	@Autowired
 	private CharacterGateway gateway;
 	
-	@GetMapping("/characters")
+	@GetMapping("/")
 	public List<CharacterMarvel> getAllCharacters(@RequestParam(name = "limit", required = false) Integer limit) {
 		String url = apiUtils.buildUrl(MarvelApiConstants.CHARACTERS, limit);
 		CharacterResponseJson characters =  (CharacterResponseJson) apiUtils.getObject(url, CharacterResponseJson.class);
@@ -54,7 +54,7 @@ public class CharactersController {
 	 * @param name
 	 * @return
 	 */
-	@GetMapping("/characters/{name}")
+	@GetMapping("/{name}")
 	public List<CharacterMarvel> getCharactersByName(@PathVariable String name) {
 		String url = apiUtils.buildUrl(MarvelApiConstants.CHARACTERS, null);
 		url = apiUtils.appendParameterToUrl(url, MarvelApiConstants.NAME_STARTS_WITH, name);
@@ -73,7 +73,7 @@ public class CharactersController {
 	 * @param name
 	 * @return
 	 */
-	@GetMapping("/characters/{name}/comics")
+	@GetMapping("/{name}/comics")
 	public CharacterComicJson getComicsByCharacterName(@PathVariable String name) {
 		String url = apiUtils.buildUrl(MarvelApiConstants.CHARACTERS, null);
 		url = apiUtils.appendParameterToUrl(url, MarvelApiConstants.NAME_STARTS_WITH, name);
